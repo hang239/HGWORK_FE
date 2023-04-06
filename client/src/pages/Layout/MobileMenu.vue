@@ -2,7 +2,7 @@
   <ul class="nav nav-mobile-menu">
     <li>
       <md-field>
-        <label>Search</label>
+        <label>Tìm kiếm</label>
         <md-input v-model="search" type="text"></md-input>
       </md-field>
     </li>

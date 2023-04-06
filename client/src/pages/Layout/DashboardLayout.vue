@@ -7,37 +7,37 @@
       :sidebar-background-image="sidebarBackgroundImage"
     >
       <mobile-menu slot="content"></mobile-menu>
-      <sidebar-link to="/dashboard">
-        <md-icon>dashboard</md-icon>
-        <p>Dashboard</p>
+      <sidebar-link to="/home">
+        <md-icon>home</md-icon>
+        <p>Trang chủ</p>
       </sidebar-link>
-      <sidebar-link to="/user">
-        <md-icon>person</md-icon>
-        <p>User Profile</p>
-      </sidebar-link>
-      <sidebar-link to="/table">
+      <sidebar-link to="/createproject">
         <md-icon>content_paste</md-icon>
-        <p>Table list</p>
+        <p>Dự án</p>
       </sidebar-link>
-      <sidebar-link to="/typography">
-        <md-icon>library_books</md-icon>
-        <p>Typography</p>
+      <sidebar-link to="/listproject">
+        <md-icon>content_paste</md-icon>
+        <p>Danh sách dự án</p>
       </sidebar-link>
-      <sidebar-link to="/icons">
+      <sidebar-link to="/task">
+        <md-icon>content_paste</md-icon>
+        <p>Công việc</p>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
         <md-icon>bubble_chart</md-icon>
-        <p>Icons</p>
-      </sidebar-link>
-      <sidebar-link to="/maps">
-        <md-icon>location_on</md-icon>
-        <p>Maps</p>
+        <p>Báo cáo</p>
       </sidebar-link>
       <sidebar-link to="/notifications">
         <md-icon>notifications</md-icon>
-        <p>Notifications</p>
+        <p>Thông báo</p>
+      </sidebar-link>
+      <sidebar-link to="/icons">
+        <md-icon>book</md-icon>
+        <p>HDSD</p>
       </sidebar-link>
       <sidebar-link to="/upgrade" class="active-pro">
         <md-icon>unarchive</md-icon>
-        <p>Upgrade to PRO</p>
+        <p>Đăng xuất</p>
       </sidebar-link>
     </side-bar>
 

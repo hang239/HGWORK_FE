@@ -22,7 +22,7 @@
               v-model="selectedEmployee"
               :md-options="employees"
             >
-              <label>Search...</label>
+              <label>Tìm kiếm...</label>
             </md-autocomplete>
           </div>
           <md-list>
