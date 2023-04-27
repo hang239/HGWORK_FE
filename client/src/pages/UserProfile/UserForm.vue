@@ -28,7 +28,7 @@
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
-              <label>Tài khoản</label>
+              <label>Tên đăng nhập</label>
               <md-input v-model="form.userName" type="text"></md-input>
             </md-field>
           </div>

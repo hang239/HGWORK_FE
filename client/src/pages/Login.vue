@@ -1,14 +1,14 @@
 <template>
-    <form v-on:submit.prevent="submitForm">
+    <form v-on:submit.prevent="submitForm"> 
         <div class="main" :style="mainStyle">
-            <h1>HGWORK Login!</h1>
-            <input class="login-input" type="text" name="username" id="username" placeholder="User Name"
+            <h1>ĐĂNG NHẬP</h1>
+            <input class="login-input" type="text" name="username" id="username" placeholder="Tên đăng nhập"
                 v-model="form.username" :style="input" />
             <br />
             <input class="login-input" type="password" name="password" id="password" v-model="form.password"
-                placeholder="P@$$W0RD" :style="input" />
+                placeholder="Mật khẩu" :style="input" />
             <br />
-            <input type="submit" value="Login" class="button login-input" id="done" :style="inputStyle" />
+            <input type="submit" value="Đăng nhập" class="button login-input" id="done" :style="inputStyle" />
             <br />
         </div>
     </form>
@@ -25,6 +25,9 @@ export default {
     },
     data() {
         return {
+            notifications: {
+                topCenter: false,
+            },
             form: {
                 username: '',
                 password: ''
@@ -43,15 +46,25 @@ export default {
                         location.reload();
                     }
                     else {
-                        alert(res.data.message);
+                        this.notifyVue('top', 'right', 'Tên đăng nhập hoặc mật khẩu không đúng')
                     }
                 })
                 .catch((error) => {
-                    alert('Đã có lỗi xảy ra!');
+                    this.notifyVue('top', 'right', 'Tên đăng nhập hoặc mật khẩu không đúng')
                 }).finally(() => {
                     //Perform action in always
                 });
-        }
+        },
+        notifyVue(verticalAlign, horizontalAlign, dataMess) {
+            this.$notify({
+                message:
+                    dataMess,
+                icon: "add_alert",
+                horizontalAlign: horizontalAlign,
+                verticalAlign: verticalAlign,
+                type: "danger",
+            });
+        },
     }
 };
 </script>
@@ -64,8 +77,8 @@ export default {
     background: rgba(255, 255, 255, 0.4);
     position: absolute;
     top: 140%;
-    left: 20%;
-    width: 40%;
+    left: 10%;
+    width: 60%;
     text-align: center;
     padding: 5px;
     border-radius: 3rem;
@@ -87,7 +100,7 @@ h1 {
     text-align: center;
     outline: none;
     margin: 10px;
-    width: 30%;
+    width: 40%;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
