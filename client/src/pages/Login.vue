@@ -1,14 +1,14 @@
 <template>
-    <form v-on:submit.prevent="submitForm"> 
+    <form v-on:submit.prevent="submitForm">
         <div class="main" :style="mainStyle">
-            <h1>ĐĂNG NHẬP</h1>
-            <input class="login-input" type="text" name="username" id="username" placeholder="Tên đăng nhập"
+            <h1>HGWORK Login!</h1>
+            <input class="login-input" type="text" name="username" id="username" placeholder="User Name"
                 v-model="form.username" :style="input" />
             <br />
             <input class="login-input" type="password" name="password" id="password" v-model="form.password"
-                placeholder="Mật khẩu" :style="input" />
+                placeholder="P@$$W0RD" :style="input" />
             <br />
-            <input type="submit" value="Đăng nhập" class="button login-input" id="done" :style="inputStyle" />
+            <input type="submit" value="Login" class="button login-input" id="done" :style="inputStyle" />
             <br />
         </div>
     </form>
@@ -38,19 +38,18 @@ export default {
         submitForm() {
             axios.post('http://localhost:8080/access/login', this.form)
                 .then((res) => {
-                    console.log(res);
                     if (res.data.statusCode == 200) {
-                        localStorage.setItem('user', JSON.stringify(res.data.data));
-                        console.log(localStorage.getItem('user'));
-                        location.href = "http://localhost:8080/#/listproject";
+                        localStorage.setItem('user', JSON.stringify(res.data.data.isAdmin));
+                        localStorage.setItem('userIdLogin', JSON.stringify(res.data.data.id));
+                        location.href = "http://localhost:8080/#/mytask/1/0";
                         location.reload();
                     }
                     else {
-                        this.notifyVue('top', 'right', 'Tên đăng nhập hoặc mật khẩu không đúng')
+                        this.notifyVue('top', 'right', 'Sai tài khoản hoặc mật khẩu')
                     }
                 })
                 .catch((error) => {
-                    this.notifyVue('top', 'right', 'Tên đăng nhập hoặc mật khẩu không đúng')
+                    this.notifyVue('top', 'right', 'Sai tài khoản hoặc mật khẩu')
                 }).finally(() => {
                     //Perform action in always
                 });
@@ -77,8 +76,8 @@ export default {
     background: rgba(255, 255, 255, 0.4);
     position: absolute;
     top: 140%;
-    left: 10%;
-    width: 60%;
+    left: 20%;
+    width: 40%;
     text-align: center;
     padding: 5px;
     border-radius: 3rem;
@@ -100,7 +99,7 @@ h1 {
     text-align: center;
     outline: none;
     margin: 10px;
-    width: 40%;
+    width: 30%;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
