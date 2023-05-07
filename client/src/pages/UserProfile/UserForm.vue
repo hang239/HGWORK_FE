@@ -60,7 +60,8 @@
             <label>Đã bàn giao <md-input v-model="firstname" type="checkbox"></md-input></label>
           </div> -->
           <div class="md-layout-item md-size-100 text-right">
-            <md-button type="submit" class="md-raised md-success">Tạo tài khoản</md-button>
+            <md-button v-if="form.id == 0" type="submit" class="md-raised md-success">Tạo tài khoản</md-button>
+            <md-button v-if="form.id > 0" type="submit" class="md-raised md-success">Cập nhật tài khoản</md-button>
           </div>
         </div>
       </md-card-content>
@@ -80,6 +81,7 @@ export default {
   data() {
     return {
       form: {
+        id: 0,
         name: '',
         phone: '',
         email: '',
@@ -93,11 +95,54 @@ export default {
       listuser: []
     };
   },
+  created(){
+// get data task if update
+const param = this.$route.params.id;
+    if (typeof(param) != "undefined") {
+      axios.get(`http://localhost:8080/user/getuser/` + param)
+        .then(response => {
+          this.form.id = response.data.data.id;
+          this.form.name = response.data.data.name;
+          this.form.phone = response.data.data.phone;
+          this.form.email = response.data.data.email;
+          this.form.userName = response.data.data.userName;
+          this.form.password = response.data.data.password;
+          this.form.status = response.data.data.status;
+          this.form.isAdmin = response.data.data.isAdmin;
+        })
+        .catch(e => {
+          console.log("error");
+        })
+    }
+  },
 
   // Gửi request lên server khi mà postPost() được gọi
   methods: {
     submitForm() {
-      if (this.form.password != this.form.repassword) {
+      if(this.form.id > 0){
+        if (this.form.password != this.form.repassword) {
+        alert('Nhập lại mật khẩu không chính xác');}
+        else{
+          axios.post('http://localhost:8080/user/update', this.form)
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            location.href = "http://localhost:8080/#/listuser";
+          }
+          else {
+            alert('Đã có lỗi xảy ra!');
+          }
+        })
+        .catch((error) => {
+          alert('Đã có lỗi xảy ra!');
+        }).finally(() => {
+          //Perform action in always
+        });
+        }
+        
+      }
+      else{
+        if (this.form.password != this.form.repassword) {
         alert('Nhập lại mật khẩu không chính xác');
       }
       else{
@@ -116,6 +161,7 @@ export default {
         }).finally(() => {
           //Perform action in always
         });
+      }
       }
     },
   }

@@ -10,6 +10,7 @@ import UserTable from "@/pages/UserProfile/UserTable.vue";
 import UserForm from "@/pages/UserProfile/UserForm.vue";
 import HomePage from "@/pages/Home/HomePage.vue";
 import LoginPage from "@/pages/Login.vue";
+import ForgotPassword from "@/pages/Forgot.vue";
 import TableList from "@/pages/TableList.vue";
 import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
@@ -184,6 +185,22 @@ const routes = [
         }
       },
       {
+        path: "updateuser/:id",
+        name: "Cập nhật tài khoản",
+        component: UserForm,
+        props: true,
+        beforeEnter: (to, from, next) => {
+          if(localStorage.getItem('user')) {
+            console.log('co quyen truy cap task');
+            next() // Take you to /something
+          } else {
+            console.log(localStorage.getItem('user'));
+              // If params.blah is blank or in your case, does not have permission, redirect back to the home page
+            next({ name: 'Login' }) 
+          }
+        }
+      },
+      {
         path: "table",
         name: "Table List",
         component: TableList,
@@ -269,6 +286,11 @@ const routes = [
         path: "login",
         name: "Login",
         component: LoginPage,
+      },
+      {
+        path: "forgot",
+        name: "Forgot Password",
+        component: ForgotPassword,
       },
     ],
   }

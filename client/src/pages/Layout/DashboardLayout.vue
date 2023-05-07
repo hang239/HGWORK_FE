@@ -4,10 +4,7 @@
 
     <side-bar v-if="isLogin == true" :sidebar-item-color="sidebarBackground" :sidebar-background-image="sidebarBackgroundImage">
       <mobile-menu slot="content"></mobile-menu>
-      <sidebar-link to="/home">
-        <md-icon>home</md-icon>
-        <p>Trang chủ</p>
-      </sidebar-link>
+    
       <sidebar-link to="/mytask/1/0">
         <md-icon>event</md-icon>
         <p>Công việc của tôi</p>
@@ -32,10 +29,7 @@
         <md-icon>flag</md-icon>
         <p>Báo cáo</p>
       </sidebar-link>
-      <sidebar-link to="/notifications">
-        <md-icon>notifications</md-icon>
-        <p>Thông báo</p>
-      </sidebar-link>
+      
       <sidebar-link v-if="isAdmin == 'true'" to="/listuser">
         <md-icon>people_outline</md-icon>
         <p>Danh sách tài khoản</p>

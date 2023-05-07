@@ -124,7 +124,7 @@
           </template>
 
           <template slot="content">
-            <p class="category">Completed Tasks</p>
+            <p class="category">Done Tasks</p>
             <h3 class="title">{{ dashboard.data.totalTasksDone }}</h3>
           </template>
 

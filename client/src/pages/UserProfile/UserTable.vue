@@ -16,14 +16,13 @@
                                         <md-table-cell md-sort-by="name" md-label="Tên người dùng">{{ item.name
                                         }}</md-table-cell>
                                         <md-table-cell md-label="Tài khoản">{{ item.userName }}</md-table-cell>
-                                        <md-table-cell md-label="SĐT">{{ item.phone }}</md-table-cell>
+                                        <md-table-cell md-label="Số Điện Thoại">{{ item.phone }}</md-table-cell>
                                         <md-table-cell md-label="Email">{{ item.email }}</md-table-cell>
                                         <md-table-cell md-label="Admin">{{ item.isAdmin }}</md-table-cell>
                                         <md-table-cell md-label="Thao tác">
-                                            <!-- <md-button @click="doUpdate(item.id)" class="md-fab md-mini" style="margin-left: 10px;background-color: coral!important;">
+                                            <md-button @click="doUpdate(item.id)" class="md-fab md-mini" style="margin-left: 10px;background-color: coral!important;">
                                                 <md-icon style="margin-right: 15px;">edit</md-icon>
-                                            </md-button> -->
-
+                                            </md-button>
                                             <md-button @click="doDelete(item.id)" class="md-fab md-mini" style="margin-left: 10px;background-color: red!important;">
                                                 <md-icon style="margin-right: 15px;">delete</md-icon>
                                             </md-button>
@@ -64,8 +63,8 @@ export default {
             })
     },
     methods: {
-        doUpdate() {
-
+        doUpdate(userId) {
+            location.href = "http://localhost:8080/#/updateuser/" + userId;
         },
         doDelete(userid) {
             axios.get(`http://localhost:8080/user/delete?id=`+ userid)

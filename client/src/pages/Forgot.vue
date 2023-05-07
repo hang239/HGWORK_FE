@@ -1,16 +1,15 @@
 <template>
     <form v-on:submit.prevent="submitForm">
         <div class="main" :style="mainStyle">
-            <h1>ĐĂNG NHẬP HỆ THỐNG!</h1>
+            <h1>QUÊN MẬT KHẨU?</h1>
             <input class="login-input" type="text" name="username" id="username" placeholder="Tài khoản"
                 v-model="form.username" :style="input" />
             <br />
-            <input class="login-input" type="password" name="password" id="password" v-model="form.password"
-                placeholder="Mật khẩu" :style="input" />
+            <input class="login-input" type="text" name="email" id="email" v-model="form.email"
+                placeholder="Email" :style="input" />
             <br />
-            <input type="submit" value="Đăng nhập" class="button login-input" id="done" :style="inputStyle" />
+            <input type="submit" value="Lấy lại mật khẩu" class="button login-input" id="done" :style="inputStyle" />
             <br />
-            <a href="#/forgot">Quên mật khẩu?</a>
         </div>
     </form>
 </template>
@@ -31,26 +30,24 @@ export default {
             },
             form: {
                 username: '',
-                password: ''
+                email: ''
             }
         }
     },
     methods: {
         submitForm() {
-            axios.post('http://localhost:8080/access/login', this.form)
+            axios.post('http://localhost:8080/user/forgot', this.form)
                 .then((res) => {
                     if (res.data.statusCode == 200) {
-                        localStorage.setItem('user', JSON.stringify(res.data.data.isAdmin));
-                        localStorage.setItem('userIdLogin', JSON.stringify(res.data.data.id));
-                        location.href = "http://localhost:8080/#/mytask/1/0";
-                        location.reload();
+                        location.href = "http://localhost:8080/#/login";
+                        // location.reload();
                     }
                     else {
-                        this.notifyVue('top', 'right', 'Sai tài khoản hoặc mật khẩu')
+                        this.notifyVue('top', 'right', 'Tài khoản hoặc email không tồn tại ')
                     }
                 })
                 .catch((error) => {
-                    this.notifyVue('top', 'right', 'Sai tài khoản hoặc mật khẩu')
+                    this.notifyVue('top', 'right', 'Tài khoản hoặc email không tồn tại')
                 }).finally(() => {
                     //Perform action in always
                 });

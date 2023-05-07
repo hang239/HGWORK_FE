@@ -21,6 +21,11 @@
                                         <md-table-cell md-sort-by="name" md-label="Tên dự án">{{ item.name }}</md-table-cell>
                                         <md-table-cell md-label="Code">{{ item.code }}</md-table-cell>
                                         <md-table-cell md-label="Mô tả">{{ item.description }}</md-table-cell>
+                                        <md-table-cell v-if="item.priority == 0" md-label="Mức độ">Thấp</md-table-cell>
+                                        <md-table-cell v-if="item.priority == 1" md-label="Mức độ">Trung bình</md-table-cell>
+                                        <md-table-cell v-if="item.priority == 2" md-label="Mức độ">Cao</md-table-cell>
+                                        <md-table-cell v-if="item.priority == 3" md-label="Mức độ">Quan trọng</md-table-cell>
+                                        
                                         <md-table-cell md-sort-by="startDate" md-label="Ngày bắt đầu">{{ item.startDate }}</md-table-cell>
                                         <md-table-cell md-sort-by="startDate" md-label="Ngày kết thúc">{{ item.endDate }}</md-table-cell>
                                         <md-table-cell md-label="Thao tác">
